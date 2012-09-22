@@ -26,14 +26,15 @@ int main(void){
     }
   }
 
-  printf("Stats ");
+  printf("Stats "); //We have to figure out how to report stats that will proabably be collected in main
+  // and reported in the signal handler. Im thinking a custom struct that will be passed to the sig handler?
 
 
 }
 void * thread_code(void * arg){
   int r, r0;
   r = rand() % 11;
-  r0 = (rand() * 3) + 7; 
+  r0 = (rand() * 3) + 7;//Im pretty sure this is right for the proababilties, a double check couldnt hurt 
   if(r <= 8){
     sleep(1);
   }
