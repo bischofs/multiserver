@@ -7,6 +7,7 @@
 
 void * thread_code(void * arg);
 void sig_handler(int sig);
+int file_Count = 0;
 int main(void){
 
   char file_input [50];
@@ -41,7 +42,7 @@ void * thread_code(void * arg){
   else{
     sleep(r0);
   }
-
+  file_Count++;
 }
 void sig_handler(int sig){
  
