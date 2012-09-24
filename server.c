@@ -24,19 +24,20 @@ int main(void){
   void * result;
 
   signal(SIGINT,sig_handler);
-  int flag = 1;
+
 
   while(1){
-    if(flag == 1){
-    printf("Enter file name: ");
-    }
-    fgets(file_input, sizeof file_input, stdin);
 
+    printf("Enter file name: ");
+
+    fgets(file_input, sizeof file_input, stdin);
+    
     if ((status = pthread_create (&thread1, NULL,thread_code, &file_input)) != 0) {
       printf("thread creation error");
       exit(1);
     }
-    flag = 0;
+    
+
 
   }
 
@@ -50,19 +51,19 @@ void * thread_code(void * arg){
   r0 = (rand() % 4) + 7;
   // start = times(&cput) / CLOCKS_PER_SEC * 1000;
   if(r < 8){
+    total++;
     sleep(1);
-    total += r;
+   
   }
   else{
-    sleep(r0);
     total += r0;
+    sleep(r0);
+
   }
   //stop = times(&cput) / CLOCKS_PER_SEC * 1000;
   
   //total += (((double) stop) - ((double) start));
   
-  printf("\nFILE: %s\n",file);
- 
 
   file_Count++;
   
@@ -72,7 +73,8 @@ void * thread_code(void * arg){
 void sig_handler(int sig){
   
   double average = 0;
-  
+
+  printf("total= %f\n",total);  
   //average = total / ((double) file_Count + 1);
   average = total / ((double) file_Count + 1);
 
